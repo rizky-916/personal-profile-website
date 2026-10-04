@@ -1,0 +1,19 @@
+# Sistem operasi / OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Rahasia & konfigurasi lokal / Secrets & local config — jangan pernah di-commit
+.env
+.env.*
+*.pem
+*.key
+
+# Log & file sementara / Logs & temp files
+*.log
+*.tmp

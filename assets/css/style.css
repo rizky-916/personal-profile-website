@@ -1,0 +1,304 @@
+/* --- Variabel Warna (Tema Ungu Neon) --- */
+:root {
+    --neon-purple: #9D00FF;       /* Warna ungu utama yang cerah */
+    --neon-purple-hover: #8A2BE2; /* Ungu saat hover */
+    --accent-cyan: #00F5C8;       /* Warna aksen untuk hover atau detail */
+    --dark-bg-primary: #0a041a;   /* Latar belakang utama, sangat gelap */
+    --dark-bg-secondary: #1a123a; /* Latar belakang untuk section/kartu */
+    --text-light: #EAEAEA;        /* Warna teks utama, putih keabuan */
+    --text-secondary: #a0a0c0;    /* Warna teks untuk paragraf */
+    --glow-shadow: 0 0 8px var(--neon-purple), 0 0 12px rgba(157, 0, 255, 0.7);
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    --header-height: 85px;        /* Perkiraan tinggi header: judul section tidak tertutup saat klik menu */
+
+    /* Font sistem: tanpa request ke pihak ketiga, cepat, dan ramah privasi */
+    --font-main: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+/* --- Konfigurasi Dasar --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Mencegah overflow horizontal yang tidak diinginkan */
+}
+
+/* Hormati pengguna yang menonaktifkan animasi di sistem operasinya */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--dark-bg-primary);
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Indikator fokus yang jelas untuk navigasi keyboard */
+a:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* Link "lewati ke konten" — hanya terlihat saat difokus dengan keyboard */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100px;
+    z-index: 2000;
+    background: var(--accent-cyan);
+    color: var(--dark-bg-primary);
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+.skip-link:focus { top: 1rem; }
+
+/* --- Header & Navigasi --- */
+header {
+    background-color: rgba(10, 4, 26, 0.8); /* Latar belakang transparan */
+    backdrop-filter: blur(10px);            /* Efek blur modern */
+    padding: 1rem 8%;
+    position: sticky; /* Tetap di atas tanpa menutupi konten (tidak perlu padding manual) */
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(157, 0, 255, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+}
+
+nav .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--neon-purple);
+    text-decoration: none;
+    text-shadow: var(--glow-shadow);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 600;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 5px var(--accent-cyan);
+}
+
+/* --- Struktur Konten Utama & Section --- */
+section {
+    padding: 80px 8%;
+    border-bottom: 1px solid rgba(157, 0, 255, 0.1);
+    scroll-margin-top: var(--header-height);
+}
+
+section:nth-child(even) {
+    background-color: var(--dark-bg-secondary);
+}
+
+h1, h2, h3 {
+    color: var(--text-light);
+    font-weight: 700;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: var(--neon-purple);
+    text-shadow: var(--glow-shadow);
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+/* --- Section: Beranda (Hero) --- */
+/* Latar dibuat murni dengan CSS (tanpa gambar eksternal) */
+#beranda {
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(157, 0, 255, 0.35), transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(0, 245, 200, 0.18), transparent 40%),
+        repeating-linear-gradient(0deg, rgba(157, 0, 255, 0.06) 0 1px, transparent 1px 40px),
+        repeating-linear-gradient(90deg, rgba(157, 0, 255, 0.06) 0 1px, transparent 1px 40px),
+        var(--dark-bg-primary);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--neon-purple);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-light);
+}
+
+.cta-button,
+.contact-button {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--accent-cyan);
+    padding: 14px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid var(--accent-cyan);
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover,
+.contact-button:hover {
+    background-color: var(--accent-cyan);
+    color: var(--dark-bg-primary);
+    box-shadow: 0 0 15px var(--accent-cyan);
+}
+
+/* --- Section: Tentang Saya --- */
+#tentang .content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.profile-pic {
+    flex-shrink: 0;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--neon-purple);
+    box-shadow: var(--glow-shadow);
+}
+
+#tentang .content p {
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+/* --- Section: Keahlian & Portofolio (Gaya Kartu) --- */
+.skills-container,
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: 2rem;
+}
+
+.skill,
+.portfolio-item {
+    background: var(--dark-bg-secondary);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid rgba(157, 0, 255, 0.3);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill:hover,
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon-purple);
+    box-shadow: var(--glow-shadow);
+}
+
+.skill { text-align: center; }
+.skill h3 { color: var(--accent-cyan); margin-bottom: 1rem; }
+
+.portfolio-item { padding: 0; overflow: hidden; }
+.portfolio-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+.portfolio-item h3, .portfolio-item p {
+    padding: 1rem 1.5rem;
+}
+.portfolio-item h3 { padding-top: 1.5rem; padding-bottom: 0.25rem; }
+.portfolio-item p { padding-bottom: 1.5rem; }
+
+/* --- Section: Kontak --- */
+#kontak p {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.contact-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--dark-bg-primary);
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 2rem 8%;
+    border-top: 1px solid rgba(157, 0, 255, 0.2);
+}
+
+/* --- Desain Responsif --- */
+@media (max-width: 768px) {
+    :root { --header-height: 150px; } /* Header lebih tinggi karena menu turun ke baris baru */
+
+    h2 { font-size: 2.2rem; }
+    .hero h1 { font-size: 2.6rem; }
+
+    header { padding: 1rem 5%; }
+    section { padding: 60px 5%; }
+
+    nav { justify-content: center; }
+    nav ul {
+        justify-content: center;
+        gap: 0.25rem 1.25rem;
+    }
+
+    #tentang .content {
+        flex-direction: column;
+    }
+    #tentang .content p { text-align: center; }
+}
